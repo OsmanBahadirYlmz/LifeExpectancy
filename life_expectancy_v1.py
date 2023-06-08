@@ -27,8 +27,24 @@ for column in df.columns:
 
 #filling the rest of data with avarage
 df = df.fillna(data.mean())
+print(df.isna().sum()) #there is no null in df
 
-print(df.isna().sum())
+duplicate_rows = df[df.duplicated()]
+print(duplicate_rows) #there is no duplicate
+
+# #OUTLIERS
+# for column in df.columns:
+#     z_scores = np.abs((df[column] - df[column].mean()) / df[column].std())
+    
+#     # Define a threshold (e.g., z-score > 3) to identify outliers
+#     threshold = 3
+    
+#     # Find outliers
+#     outliers = df[z_scores > threshold]
+    
+#     # Print the outliers
+#     print(outliers)
+
 
 
 # In[2] 2.Descriptive statistics of the data
