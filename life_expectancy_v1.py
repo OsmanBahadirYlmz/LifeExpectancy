@@ -27,9 +27,10 @@ for column in df.columns:
 
 #filling the rest of data with avarage
 df = df.fillna(data.mean())
+print(df.isna().sum()) #there is no null in df
 
-print(df.isna().sum())
-
+duplicate_rows = df[df.duplicated()]
+print(duplicate_rows) #there is no duplicate
 
 # In[2] 2.Descriptive statistics of the data
 byCountry = df.groupby("Country").mean()
