@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
+
 # In[1] 1. Reading data from a formatted file********
 # https://www.kaggle.com/datasets/kumarajarshi/life-expectancy-who
 data=pd.read_csv("Life Expectancy Data.csv") #orginal data without filling
@@ -69,14 +70,26 @@ coomment about coralation- in theese matrix it can be said that,
 Schooling,Income composition of resources, BMI has direct coralation,
 moreover, Adult Mortality and HIV/AIDS has negative coralation.
 """
-coralation_matrix = df.corr()
-coralation_matrix2 = data.corr()['Life expectancy '].sort_values()
-coralation_matrix2.drop(labels=["Life expectancy "], axis=0, inplace=True)
+correlation_matrix = df.corr()
+correlation_matrix2 = data.corr()['Life expectancy '].sort_values()
+correlation_matrix2.drop(labels=["Life expectancy "], axis=0, inplace=True)
 plt.title("Corelation Table For Life Expectancy")
-plt.bar(coralation_matrix2.index, coralation_matrix2[:])
+plt.bar(correlation_matrix2.index, correlation_matrix2[:])
 plt.xticks(rotation=90)
 plt.show()
 
+# Heatmap
+plt.figure(figsize=(10, 8)) 
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap')
+plt.show()
+
+# Heatmap just for life expectancy
+plt.figure(figsize=(10, 8))
+sorted_corr_matrix = correlation_matrix[['Life expectancy ']].sort_values(by='Life expectancy ',ascending=False)  
+sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm')
+plt.title('Life Expectancy Heatmap')
+plt.show()
 
 # life expectancy vs features plots
 for i in range(18):
@@ -101,3 +114,4 @@ when percentage of expenditure obove 1500's, life expectancy rises proportionaly
 8-there is direct corelation both income and schooling between life expactancy
 
 """
+
