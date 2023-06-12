@@ -112,6 +112,9 @@ when percentage of expenditure obove 1500's, life expectancy rises proportionaly
 6-above 10000 GDP increases life expactancy
 7-thinness certainly has the effect of lowering life expectancy
 8-there is direct corelation both income and schooling between life expactancy
-
 """
+df.iloc[:,3:].apply(pd.to_numeric,errors='coerce')
+df['Country']=df['Country'].astype('category').cat.codes
+df['Status']=df['Status'].astype('category').cat.codes
 
+df.corr()
