@@ -79,10 +79,11 @@ plt.xticks(rotation=90)
 plt.show()
 
 # Heatmap
-plt.figure(figsize=(10, 8)) 
-sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.figure(figsize=(12, 10)) 
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', annot_kws={"fontsize": 12},fmt='.1f')
 plt.title('Correlation Heatmap')
 plt.show()
+
 
 # Heatmap just for life expectancy
 plt.figure(figsize=(10, 8))
@@ -118,3 +119,37 @@ df['Country']=df['Country'].astype('category').cat.codes
 df['Status']=df['Status'].astype('category').cat.codes
 
 df.corr()
+
+#In [q6]
+
+
+#correlation of alcohol
+plt.figure(figsize=(10, 8))
+sorted_corr_matrix = correlation_matrix[['Alcohol']].sort_values(by='Alcohol',ascending=False)  
+sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm',annot_kws={"fontsize": 12},fmt='.2f')
+plt.title('Alcohol Correlation Heatmap')
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
