@@ -101,3 +101,4 @@ when percentage of expenditure obove 1500's, life expectancy rises proportionaly
 8-there is direct corelation both income and schooling between life expactancy
 
 """
+print('ss')
