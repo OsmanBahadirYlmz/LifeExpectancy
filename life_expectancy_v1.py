@@ -86,9 +86,9 @@ plt.show()
 
 
 # Heatmap just for life expectancy
-plt.figure(figsize=(10, 8))
+plt.figure(figsize=(3, 8))
 sorted_corr_matrix = correlation_matrix[['Life expectancy ']].sort_values(by='Life expectancy ',ascending=False)  
-sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm')
+sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm',fmt='.2f')
 plt.title('Life Expectancy Heatmap')
 plt.show()
 
