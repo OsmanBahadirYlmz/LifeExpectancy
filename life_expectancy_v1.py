@@ -130,20 +130,62 @@ sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm',annot_kws={"fontsize
 plt.title('Alcohol Correlation Heatmap')
 plt.show()
 
+#Immunization
+byCountry['immunization'] = byCountry[['Hepatitis B', 'Diphtheria ', 'Polio']].mean(axis=1)
+
+plt.figure(figsize=(5, 12))
+correlation_matrix3=byCountry.corr()
+sorted_corr_matrix = correlation_matrix3[['immunization']].sort_values(by='immunization',ascending=False)  
+sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm',annot_kws={"fontsize": 12},fmt='.2f')
+plt.title('Immunization Correlation Heatmap')
+plt.show()
+
+
+plt.scatter(byCountry['immunization'], byCountry['Life expectancy '],s=10 )
+plt.xlabel('Immunization Coverage')
+plt.ylabel('Life Expectancy ')
+plt.title('Immunization Coverage vs. Life Expectancy')
+plt.show()
+
+sns.regplot(x='immunization', y='Life expectancy ', data=byCountry,  line_kws={'color': 'red'}, scatter_kws={'s': 10})
+plt.xlabel('Immunization Coverage')
+plt.ylabel('Life Expectancy')
+plt.title('Immunization Coverage vs. Life Expectancy')
+plt.show()
 
 
 
 
+sns.boxplot(x='immunization', y='Life expectancy ', data=byCountry)
+plt.xlabel('Immunization Coverage')
+plt.ylabel('Life Expectancy')
+plt.title('Immunization Coverage vs. Life Expectancy')
+plt.show()
 
 
 
+filtered_df = byCountry[(byCountry['immunization'] >= 85) & (byCountry['immunization'] <= 100)]
+
+sns.regplot(x='immunization', y='Life expectancy ', data=filtered_df, line_kws={'color': 'red'}, scatter_kws={'s': 10})
+plt.xlabel('Immunization Coverage')
+plt.ylabel('Life Expectancy')
+plt.title('Immunization Coverage (85-100) vs. Life Expectancy')
+plt.show()
 
 
+# Heatmap
+plt.figure(figsize=(12, 10)) 
+sns.heatmap(correlation_matrix3, annot=True, cmap='coolwarm', annot_kws={"fontsize": 12},fmt='.1f')
+plt.title('Correlation Heatmap')
+plt.show()
 
 
-
-
-
+# Heatmap just for life expectancy
+plt.figure(figsize=(10, 8))
+sorted_corr_matrix = correlation_matrix[['Life expectancy ']].sort_values(by='Life expectancy ',ascending=False)  
+sns.heatmap(sorted_corr_matrix, annot=True, cmap='coolwarm')
+plt.title('Life Expectancy Heatmap')
+plt.show()
 
 
 
